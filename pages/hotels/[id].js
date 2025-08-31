@@ -1,12 +1,12 @@
 // pages/hotels/[id].js
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import HotelGallery from '../../components/Hotel/HotelGallery';
-import AmenitiesList from '../../components/Hotel/AmenitiesList';
-import RoomCard from '../../components/Hotel/RoomCard';
-import ReviewCard from '../../components/Review/ReviewCard';
-import LoadingSpinner from '../../components/Common/LoadingSpinner';
-import ErrorMessage from '../../components/Common/ErrorMessage';
+import HotelGallery from '../../components/hotel/hotelgallery';
+import AmenitiesList from '../../components/hotel/amenitieslist';
+import RoomCard from '../../components/hotel/roomcard';
+import ReviewCard from '../../components/review/reviewcard';
+import LoadingSpinner from '../../components/common/loadingspinner';
+import ErrorMessage from '../../components/common/errormessage';
 import { fetcher } from '../../lib/utils';
 
 export default function HotelDetailPage() {

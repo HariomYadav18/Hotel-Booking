@@ -1,9 +1,9 @@
 // pages/index.js
 import Link from 'next/link';
-import SearchBar from '../components/Search/SearchBar';
+import SearchBar from '../components/search/searchbar';
 import { useHotels } from '../hooks/useHotels';
-import HotelCard from '../components/Hotel/HotelCard';
-import LoadingSpinner from '../components/Common/LoadingSpinner';
+import HotelCard from '../components/hotel/hotelcard';
+import LoadingSpinner from '../components/common/loadingspinner';
 
 export default function HomePage() {
   const { hotels, loading, error } = useHotels();

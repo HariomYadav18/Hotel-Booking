@@ -1,12 +1,12 @@
 // pages/booking/[hotelId].js
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import BookingForm from '../../components/Booking/BookingForm';
-import BookingSummary from '../../components/Booking/BookingSummary';
-import CouponInput from '../../components/Booking/CouponInput';
-import GuestDetails from '../../components/Booking/GuestDetails';
-import LoadingSpinner from '../../components/Common/LoadingSpinner';
-import ErrorMessage from '../../components/Common/ErrorMessage';
+import BookingForm from '../../components/booking/bookingform';
+import BookingSummary from '../../components/booking/bookingsummary';
+import CouponInput from '../../components/booking/couponinput';
+import GuestDetails from '../../components/booking/guestdetails';
+import LoadingSpinner from '../../components/common/loadingspinner';
+import ErrorMessage from '../../components/common/errormessage';
 import { fetcher } from '../../lib/utils';
 
 export default function BookingPage() {

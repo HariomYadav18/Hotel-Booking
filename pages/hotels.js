@@ -1,9 +1,9 @@
 // pages/hotels.js
-import FilterSidebar from '../components/Search/FilterSidebar';
-import HotelCard from '../components/Hotel/HotelCard';
+import FilterSidebar from '../components/search/filtersidebar';
+import HotelCard from '../components/hotel/hotelcard';
 import { useFilter } from '../context/FilterContext';
 import { useHotels } from '../hooks/useHotels';
-import LoadingSpinner from '../components/Common/LoadingSpinner';
+import LoadingSpinner from '../components/common/loadingspinner';
 
 export default function HotelsPage() {
   const { filters } = useFilter();

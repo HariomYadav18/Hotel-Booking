@@ -1,8 +1,8 @@
 // pages/bookings.js
 import { useBookings } from '../hooks/useBookings';
-import LoadingSpinner from '../components/Common/LoadingSpinner';
-import ErrorMessage from '../components/Common/ErrorMessage';
-import BookingSummary from '../components/Booking/BookingSummary';
+import LoadingSpinner from '../components/common/loadingspinner';
+import ErrorMessage from '../components/common/errormessage';
+import BookingSummary from '../components/booking/bookingsummary';
 
 export default function MyBookingsPage() {
   const { bookings, loading, error } = useBookings();
