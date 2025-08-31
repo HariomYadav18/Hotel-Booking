@@ -1,0 +1,45 @@
+// pages/api/hotels/availability.js
+import { ObjectId } from 'mongodb';
+import clientPromise from '../../../lib/mongodb';
+
+export default async function handler(req, res) {
+  const client = await clientPromise;
+  const db = client.db();
+  const { hotelId, start, end } = req.query;
+
+  if (!ObjectId.isValid(hotelId)) {
+    return res.status(400).json({ error: 'Invalid hotel ID' });
+  }
+  if (!start || !end) {
+    return res.status(400).json({ error: 'Start and end dates required' });
+  }
+
+  const hotelsCol    = db.collection('hotels');
+  const bookingsCol  = db.collection('bookings');
+
+  try {
+    // 1. Get hotel and its rooms
+    const hotel = await hotelsCol.findOne({ _id: new ObjectId(hotelId) });
+    if (!hotel) return res.status(404).json({ error: 'Hotel not found' });
+
+    // 2. Find overlapping bookings
+    const overlapping = await bookingsCol.find({
+      hotelId:     new ObjectId(hotelId),
+      $or: [
+        { checkIn:  { $lte: new Date(end) }, checkOut: { $gte: new Date(start) } }
+      ]
+    }).toArray();
+
+    const bookedRoomIds = new Set(overlapping.map(b => b.roomId.toString()));
+
+    // 3. Filter available rooms
+    const availableRooms = hotel.rooms.filter(
+      room => !bookedRoomIds.has(room.id.toString())
+    );
+
+    return res.status(200).json({ availableRooms });
+  } catch (err) {
+    console.error('Availability error:', err);
+    return res.status(500).json({ error: 'Availability check failed' });
+  }
+}
