@@ -1,11 +1,14 @@
 // pages/api/hotels/index.js
-import clientPromise from '../../../lib/mongodb';
 import hotelsData from '../../../data/hotels.json';
 import { DEMO_MODE } from '../../../lib/constants';
 
 export default async function handler(req, res) {
-  const client = DEMO_MODE ? null : await clientPromise;
-  const db = DEMO_MODE ? null : client.db();
+  let db = null;
+  if (!DEMO_MODE) {
+    const { default: clientPromise } = await import('../../../lib/mongodb');
+    const client = await clientPromise;
+    db = client.db();
+  }
 
   if (req.method === 'GET') {
     try {
