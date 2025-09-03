@@ -26,6 +26,11 @@
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
+    ],
+    "/hotels": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/hotels.js"
     ]
   },
   "ampFirstPages": []
