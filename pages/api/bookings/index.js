@@ -2,11 +2,13 @@
 import { ObjectId } from 'mongodb';
 import clientPromise from '../../../lib/mongodb';
 import { generateBookingId, generateTransactionId } from '../../../lib/utils';
+import { DEMO_MODE } from '../../../lib/constants';
+import roomsData from '../../../data/rooms.json';
 
 export default async function handler(req, res) {
-  const client = await clientPromise;
-  const db = client.db();
-  const bookingsCol = db.collection('bookings');
+  const client = DEMO_MODE ? null : await clientPromise;
+  const db = DEMO_MODE ? null : client.db();
+  const bookingsCol = DEMO_MODE ? null : db.collection('bookings');
 
   if (req.method === 'POST') {
     const {
@@ -52,6 +54,9 @@ export default async function handler(req, res) {
     };
 
     try {
+      if (DEMO_MODE) {
+        return res.status(201).json({ ...newBooking, _id: 'demo-id' });
+      }
       const result = await bookingsCol.insertOne(newBooking);
       return res.status(201).json({
         ...newBooking,
@@ -65,6 +70,9 @@ export default async function handler(req, res) {
 
   if (req.method === 'GET') {
     try {
+      if (DEMO_MODE) {
+        return res.status(200).json([]);
+      }
       const allBookings = await bookingsCol.find({}).toArray();
       return res.status(200).json(allBookings);
     } catch (error) {

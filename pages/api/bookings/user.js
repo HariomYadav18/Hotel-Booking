@@ -1,10 +1,11 @@
 // pages/api/bookings/user.js
 import clientPromise from '../../../lib/mongodb';
+import { DEMO_MODE } from '../../../lib/constants';
 
 export default async function handler(req, res) {
-  const client = await clientPromise;
-  const db = client.db();
-  const bookingsCol = db.collection('bookings');
+  const client = DEMO_MODE ? null : await clientPromise;
+  const db = DEMO_MODE ? null : client.db();
+  const bookingsCol = DEMO_MODE ? null : db.collection('bookings');
 
   if (req.method !== 'GET') {
     res.setHeader('Allow', ['GET']);
@@ -17,6 +18,9 @@ export default async function handler(req, res) {
   }
 
   try {
+    if (DEMO_MODE) {
+      return res.status(200).json([]);
+    }
     const userBookings = await bookingsCol
       .find({ guestEmail: email })
       .sort({ createdAt: -1 })
