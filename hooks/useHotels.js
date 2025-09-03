@@ -11,7 +11,9 @@ export default function useHotels(filters = {}) {
     const fetchHotels = async () => {
       try {
         const res = await axios.get('/api/hotels', { params: filters });
-        setHotels(res.data);
+        // Normalize id field for UI components
+        const normalized = (res.data || []).map(h => ({ ...h, id: h._id || h.id }));
+        setHotels(normalized);
       } catch (err) {
         setError(err.message || 'Failed to fetch hotels');
       } finally {

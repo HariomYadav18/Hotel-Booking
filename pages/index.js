@@ -22,10 +22,8 @@ export default function HomePage() {
         <h2 className="text-2xl font-semibold mb-4">Featured Hotels</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {hotels.slice(0, 6).map((hotel) => (
-            <Link key={hotel.id} href={`/hotels/${hotel.id}`}>
-              <a>
-                <HotelCard hotel={hotel} />
-              </a>
+            <Link key={hotel._id || hotel.id} href={`/hotels/${hotel._id || hotel.id}`} className="block">
+              <HotelCard hotel={hotel} />
             </Link>
           ))}
         </div>
