@@ -22,8 +22,8 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'Start and end dates required' });
   }
 
-  const hotelsCol    = db.collection('hotels');
-  const bookingsCol  = db.collection('bookings');
+  const hotelsCol    = db ? db.collection('hotels') : null;
+  const bookingsCol  = db ? db.collection('bookings') : null;
 
   try {
     // 1. Get hotel and its rooms
