@@ -1,7 +1,7 @@
 // pages/index.js
 import Link from 'next/link';
 import SearchBar from '../components/search/searchbar';
-import { useHotels } from '../hooks/useHotels';
+import useHotels from '../hooks/useHotels';
 import HotelCard from '../components/hotel/hotelcard';
 import LoadingSpinner from '../components/common/loadingspinner';
 
