@@ -5,6 +5,7 @@
 @layer base {
   body {
     @apply bg-gray-50 text-gray-900 antialiased;
+    font-family: Consolas, 'Lucida Console', 'Courier New', monospace;
   }
   
   h1, h2, h3, h4, h5, h6 {
