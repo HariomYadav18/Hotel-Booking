@@ -15,7 +15,7 @@ export default async function handler(req, res) {
   }
   const { hotelId, start, end } = req.query;
 
-  if (!ObjectId.isValid(hotelId)) {
+  if (!DEMO_MODE && !ObjectId.isValid(hotelId)) {
     return res.status(400).json({ error: 'Invalid hotel ID' });
   }
   if (!start || !end) {
