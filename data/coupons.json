@@ -1,0 +1,5 @@
+[
+  { "code": "WELCOME10", "discountPercent": 10, "minAmount": 100, "expiresAt": null },
+  { "code": "SUMMER15",  "discountPercent": 15, "minAmount": 200, "expiresAt": null }
+]
+

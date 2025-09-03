@@ -1,0 +1,36 @@
+[
+  {
+    "id": "1",
+    "name": "Seaside Grand Hotel",
+    "city": "Goa",
+    "rating": 4.6,
+    "description": "A premium beachside retreat with ocean-view rooms and world-class amenities.",
+    "images": [
+      "/images/placeholder-hotel.jpg",
+      "https://images.unsplash.com/photo-1501117716987-c8e1ecb2101f"
+    ],
+    "amenities": ["Pool", "Spa", "WiFi", "Gym", "Restaurant", "Bar"],
+    "rooms": [
+      { "id": "1-std", "name": "Standard Room", "capacity": 2, "price": 120 },
+      { "id": "1-del", "name": "Deluxe Room",   "capacity": 3, "price": 180 },
+      { "id": "1-sui", "name": "Suite",          "capacity": 4, "price": 260 }
+    ]
+  },
+  {
+    "id": "2",
+    "name": "Mountain View Resort",
+    "city": "Manali",
+    "rating": 4.4,
+    "description": "Cozy mountain resort with panoramic valley views and outdoor activities.",
+    "images": [
+      "/images/placeholder-hotel.jpg",
+      "https://images.unsplash.com/photo-1501555088652-021faa106b9b"
+    ],
+    "amenities": ["WiFi", "Parking", "Heater", "Restaurant"],
+    "rooms": [
+      { "id": "2-std", "name": "Standard Room", "capacity": 2, "price": 90 },
+      { "id": "2-fam", "name": "Family Room",   "capacity": 4, "price": 150 }
+    ]
+  }
+]
+

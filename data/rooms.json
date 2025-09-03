@@ -1,0 +1,8 @@
+[
+  { "hotelId": "1", "roomId": "1-std", "name": "Standard Room", "capacity": 2, "price": 120 },
+  { "hotelId": "1", "roomId": "1-del", "name": "Deluxe Room",   "capacity": 3, "price": 180 },
+  { "hotelId": "1", "roomId": "1-sui", "name": "Suite",          "capacity": 4, "price": 260 },
+  { "hotelId": "2", "roomId": "2-std", "name": "Standard Room", "capacity": 2, "price": 90  },
+  { "hotelId": "2", "roomId": "2-fam", "name": "Family Room",   "capacity": 4, "price": 150 }
+]
+
