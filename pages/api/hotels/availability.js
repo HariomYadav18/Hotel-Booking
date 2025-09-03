@@ -1,12 +1,18 @@
 // pages/api/hotels/availability.js
 import { ObjectId } from 'mongodb';
-import clientPromise from '../../../lib/mongodb';
+let clientPromiseModule = null;
 import hotelsData from '../../../data/hotels.json';
 import { DEMO_MODE } from '../../../lib/constants';
 
 export default async function handler(req, res) {
-  const client = DEMO_MODE ? null : await clientPromise;
-  const db = DEMO_MODE ? null : client.db();
+  let db = null;
+  if (!DEMO_MODE) {
+    if (!clientPromiseModule) {
+      clientPromiseModule = await import('../../../lib/mongodb');
+    }
+    const client = await clientPromiseModule.default;
+    db = client.db();
+  }
   const { hotelId, start, end } = req.query;
 
   if (!ObjectId.isValid(hotelId)) {
