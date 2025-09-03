@@ -1,4 +1,5 @@
 import { createPaymentIntent } from '../../../lib/stripe';
+import { DEMO_MODE } from '../../../lib/constants';
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -12,6 +13,9 @@ export default async function handler(req, res) {
   }
 
   try {
+    if (DEMO_MODE || !process.env.STRIPE_SECRET_KEY) {
+      return res.status(200).json({ clientSecret: 'demo_client_secret', id: 'pi_demo' });
+    }
     const intent = await createPaymentIntent(Number(amount), metadata);
     return res.status(200).json({ clientSecret: intent.client_secret, id: intent.id });
   } catch (error) {
