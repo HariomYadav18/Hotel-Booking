@@ -3,5 +3,7 @@
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
   "/": "pages/index.js",
-  "/api/hotels": "pages/api/hotels.js"
+  "/api/reviews/hotel": "pages/api/reviews/hotel.js",
+  "/api/hotels/[id]": "pages/api/hotels/[id].js",
+  "/hotels/[id]": "pages/hotels/[id].js"
 }
