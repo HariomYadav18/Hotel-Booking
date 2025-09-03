@@ -1,10 +1,12 @@
 // pages/api/hotels/availability.js
 import { ObjectId } from 'mongodb';
 import clientPromise from '../../../lib/mongodb';
+import hotelsData from '../../../data/hotels.json';
+import { DEMO_MODE } from '../../../lib/constants';
 
 export default async function handler(req, res) {
-  const client = await clientPromise;
-  const db = client.db();
+  const client = DEMO_MODE ? null : await clientPromise;
+  const db = DEMO_MODE ? null : client.db();
   const { hotelId, start, end } = req.query;
 
   if (!ObjectId.isValid(hotelId)) {
@@ -19,11 +21,13 @@ export default async function handler(req, res) {
 
   try {
     // 1. Get hotel and its rooms
-    const hotel = await hotelsCol.findOne({ _id: new ObjectId(hotelId) });
+    const hotel = DEMO_MODE
+      ? hotelsData.find(h => (h._id || h.id) == hotelId)
+      : await hotelsCol.findOne({ _id: new ObjectId(hotelId) });
     if (!hotel) return res.status(404).json({ error: 'Hotel not found' });
 
     // 2. Find overlapping bookings
-    const overlapping = await bookingsCol.find({
+    const overlapping = DEMO_MODE ? [] : await bookingsCol.find({
       hotelId:     new ObjectId(hotelId),
       $or: [
         { checkIn:  { $lte: new Date(end) }, checkOut: { $gte: new Date(start) } }

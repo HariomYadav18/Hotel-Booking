@@ -1,12 +1,17 @@
 // pages/api/hotels/index.js
 import clientPromise from '../../../lib/mongodb';
+import hotelsData from '../../../data/hotels.json';
+import { DEMO_MODE } from '../../../lib/constants';
 
 export default async function handler(req, res) {
-  const client = await clientPromise;
-  const db = client.db(); // picks default DB from MONGODB_URI
+  const client = DEMO_MODE ? null : await clientPromise;
+  const db = DEMO_MODE ? null : client.db();
 
   if (req.method === 'GET') {
     try {
+      if (DEMO_MODE) {
+        return res.status(200).json(hotelsData);
+      }
       const hotels = await db.collection('hotels').find({}).toArray();
       return res.status(200).json(hotels);
     } catch (error) {
@@ -17,8 +22,10 @@ export default async function handler(req, res) {
 
   if (req.method === 'POST') {
     try {
+      if (DEMO_MODE) {
+        return res.status(200).json({ message: 'Demo mode: Not persisted' });
+      }
       const newHotel = req.body;
-      // optional: validate newHotel against a schema in lib/validators.js
       const result = await db.collection('hotels').insertOne(newHotel);
       return res.status(201).json({ ...newHotel, _id: result.insertedId });
     } catch (error) {
