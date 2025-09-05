@@ -2,15 +2,15 @@ import Link from 'next/link';
 
 export default function Header() {
   return (
-    <header className="bg-white border-b">
-      <div className="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
-        <Link href="/" className="flex items-center space-x-2">
-          <img src="/logo.png" alt="Logo" className="h-6 w-6" />
-          <span className="font-semibold">Hotel Booking</span>
+    <header className="bg-white/80 backdrop-blur border-b sticky top-0 z-30">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+        <Link href="/" className="flex items-center space-x-2 group">
+          <img src="/logo.png" alt="Logo" className="h-7 w-7 rounded-md shadow-sm" />
+          <span className="font-semibold tracking-tight group-hover:text-primary-700 transition-colors">Hotel Booking</span>
         </Link>
-        <nav className="space-x-4">
-          <Link href="/hotels" className="text-gray-700 hover:text-gray-900">Hotels</Link>
-          <Link href="/bookings" className="text-gray-700 hover:text-gray-900">My Bookings</Link>
+        <nav className="hidden sm:flex items-center gap-6">
+          <Link href="/hotels" className="text-gray-700 hover:text-primary-700 transition-colors">Hotels</Link>
+          <Link href="/bookings" className="text-gray-700 hover:text-primary-700 transition-colors">My Bookings</Link>
         </nav>
       </div>
     </header>
